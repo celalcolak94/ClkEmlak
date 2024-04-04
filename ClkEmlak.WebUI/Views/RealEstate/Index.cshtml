@@ -1,0 +1,64 @@
+﻿@model List<EstateWithCategoryDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_PageLayout.cshtml";
+}
+
+<div class="section section-properties">
+    <div class="container">
+        <h1 class="text-center mb-5">TÜM İLANLAR</h1>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                    <div class="property-item mb-30">
+                        <a asp-controller="RealEstate" asp-action="Details" asp-route-id="@item.EstateID" class="img">
+                            <img src="@item.CoverPhoto" alt="Image" style="width:100%;height:420px;" />
+                        </a>
+
+                        <div class="property-content">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="price mb-2"><span>@item.CategoryName</span></div>
+                                </div>
+                                <div class="col-6 text-end">
+                                    <div class="price mb-2"><span class="text-danger">@item.Price.ToString("N0") ₺</span></div>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="d-block mb-2 text-black-50">@item.Title</span>
+                                <span class="city d-block mb-3">@item.District, @item.Province</span>
+
+                                <div class="specs d-flex mb-4">
+                                    <span class="d-block d-flex align-items-center me-3">
+                                        <span class="icon-bed me-2"></span>
+                                        <span class="caption">@item.Rooms oda</span>
+                                    </span>
+                                    <span class="d-block d-flex align-items-center">
+                                        <span class="icon-bath me-2"></span>
+                                        <span class="caption">@item.BathNumber banyo</span>
+                                    </span>
+                                </div>
+
+                                <a asp-controller="RealEstate" asp-action="Details" asp-route-id="@item.EstateID"
+                                   class="btn btn-primary py-2 px-3" style="background-color:#78c724;">Detaylar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="row align-items-center py-5">
+            <div class="col-lg-3">Pagination (1 of 10)</div>
+            <div class="col-lg-6 text-center">
+                <div class="custom-pagination">
+                    <a href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

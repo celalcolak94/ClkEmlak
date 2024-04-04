@@ -1,0 +1,74 @@
+﻿@model List<ResultContactDto>
+<div class="site-footer">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4">
+                    <div class="widget">
+                        <h3>İletişim</h3>
+                        <address>@item.Location</address>
+                        <ul class="list-unstyled links">
+                            <li><a href="tel://@item.Phone">@item.Phone</a></li>
+                            <li><a href="tel://@item.Phone2">@item.Phone2</a></li>
+                            <li>
+                                <a href="mailto:@item.Email">@item.Email</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            }
+            <div class="col-lg-4">
+                <div class="widget">
+                    <h3>Sources</h3>
+                    <ul class="list-unstyled float-start links">
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Vision</a></li>
+                        <li><a href="#">Mission</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                    <ul class="list-unstyled float-start links">
+                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">Business</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Creative</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="widget">
+                    <h3>Bağlantılar</h3>
+                    <ul class="list-unstyled links">
+                        <li><a asp-controller="RealEstate" asp-action="Index">Gayrimenkuller</a></li>
+                        <li><a asp-controller="Service" asp-action="Index">Hizmetler</a></li>
+                        <li><a asp-controller="About" asp-action="Index">Hakkımızda</a></li>
+                        <li><a asp-controller="Contact" asp-action="Index">İletişim</a></li>
+                    </ul>
+
+                    <ul class="list-unstyled social">
+                        @foreach (var item in (List<ResultSocialMediaDto>)ViewBag.SocialMedias)
+                        {
+                            <li>
+                                <a href="@item.Url"><span class="@item.Icon"></span></a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <p>
+                    Telif Hakkı &copy;
+                    @DateTime.Now.Year
+                    . Tüm Hakları Saklıdır. &mdash; Celal Çolak Tarafından Tasarlandı.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

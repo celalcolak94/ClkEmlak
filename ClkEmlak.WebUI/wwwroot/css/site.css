@@ -1,0 +1,45 @@
+.file-upload {
+    position: relative;
+    display: inline-block;
+}
+
+#file-input {
+    display: none;
+}
+
+.file-upload > label {
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+#file-preview {
+    margin-top: 10px;
+}
+
+.preview-item {
+    position: relative;
+    display: inline-block;
+}
+
+    .preview-item img {
+        width: 100px;
+        height: 100px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+.close-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+}

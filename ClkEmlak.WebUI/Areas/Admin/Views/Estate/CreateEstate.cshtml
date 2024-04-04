@@ -1,0 +1,167 @@
+﻿@model CreateEstateModel
+@{
+    ViewData["Title"] = "CreateEstate";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h4 class="page-title">Gayrimenkuller</h4>
+<div class="row">
+	<div class="col-md-8">
+		<div class="card">
+			<div class="card-header">
+				<div class="card-title">Gayrimenkul Ekleme İşlemi</div>
+			</div>
+			<form method="post" enctype="multipart/form-data" asp-area="Admin" asp-controller="Estate" asp-action="CreateEstate" id="upload-form">
+				<div class="card-body">
+					<div class="file-upload">
+						<label for="file-input">
+							<span>Fotoğraf Seç</span>
+							<input asp-for="Images" id="file-input" type="file" multiple>
+						</label>
+						<div id="file-preview"></div>
+					</div>
+@* 					<div class="form-group">
+						<label for="images">Fotoğraflar</label>
+						<input asp-for="Images" type="file" class="form-control-file" id="images" multiple>
+						<span class="text-danger" asp-validation-for="Images"></span>
+					</div> *@
+					<div class="form-group">
+						<label for="title">Başlık</label>
+						<input asp-for="Title" type="text" class="form-control" id="title" placeholder="Başlık">
+						<span class="text-danger" asp-validation-for="Title"></span>
+					</div>
+					<div class="form-group">
+						<label for="description">Açıklama</label>
+						<input asp-for="Description" type="text" class="form-control" id="description" placeholder="Başlık">
+						<span class="text-danger" asp-validation-for="Description"></span>
+					</div>
+					<div class="form-group">
+						<label for="price">Fiyat</label>
+						<input asp-for="Price" type="number" class="form-control" id="price" placeholder="Fiyat">
+						<span class="text-danger" asp-validation-for="Price"></span>
+					</div>
+					<div class="form-group">
+						<label for="country">Ülke</label>
+						<input asp-for="Country" type="text" class="form-control" id="country" placeholder="Ülke">
+						<span class="text-danger" asp-validation-for="Country"></span>
+					</div>
+					<div class="form-group">
+						<label for="province">Şehir</label>
+						<input asp-for="Province" type="text" class="form-control" id="province" placeholder="Şehir">
+						<span class="text-danger" asp-validation-for="Province"></span>
+					</div>
+					<div class="form-group">
+						<label for="district">İlçe</label>
+						<input asp-for="District" type="text" class="form-control" id="district" placeholder="İlçe">
+						<span class="text-danger" asp-validation-for="District"></span>
+					</div>
+					<div class="form-group">
+						<label for="address">Mahalle</label>
+						<input asp-for="Address" type="text" class="form-control" id="address" placeholder="Mahalle">
+						<span class="text-danger" asp-validation-for="Address"></span>
+					</div>
+					<div class="form-group">
+						<label for="GrossSquareMeters">m²(Brüt)</label>
+						<input asp-for="GrossSquareMeters" type="number" class="form-control" id="GrossSquareMeters" placeholder="m²(Brüt)">
+						<span class="text-danger" asp-validation-for="GrossSquareMeters"></span>
+					</div>
+					<div class="form-group">
+						<label for="NetSquareMeters">m²(Net)</label>
+						<input asp-for="NetSquareMeters" type="number" class="form-control" id="NetSquareMeters" placeholder="m²(Net)">
+						<span class="text-danger" asp-validation-for="NetSquareMeters"></span>
+					</div>
+					<div class="form-group">
+						<label for="Rooms">Oda</label>
+						<input asp-for="Rooms" type="text" class="form-control" id="Rooms" placeholder="Örnek (2+1)">
+						<span class="text-danger" asp-validation-for="Rooms"></span>
+					</div>
+					<div class="form-group">
+						<label for="BuildingAge">Bina Yaşı</label>
+						<input asp-for="BuildingAge" type="number" class="form-control" id="BuildingAge" placeholder="Bina Yaşı">
+						<span class="text-danger" asp-validation-for="BuildingAge"></span>
+					</div>
+					<div class="form-group">
+						<label for="NumberOfFloors">Kat Sayısı</label>
+						<input asp-for="NumberOfFloors" type="number" class="form-control" id="NumberOfFloors" placeholder="Kat Sayısı">
+						<span class="text-danger" asp-validation-for="NumberOfFloors"></span>
+					</div>
+					<div class="form-group">
+						<label for="FloorLocation">Bulunduğu Kat</label>
+						<input asp-for="FloorLocation" type="number" class="form-control" id="FloorLocation" placeholder="Bulunduğu Kat">
+						<span class="text-danger" asp-validation-for="FloorLocation"></span>
+					</div>
+					<div class="form-group">
+						<label for="Heating">Isıtma</label>
+						<select asp-for="Heating" class="form-control" id="Heating">
+							<option value="0">Soba</option>
+							<option value="1">Doğalgaz</option>
+							<option value="2">Klima</option>
+						</select>
+						<span class="text-danger" asp-validation-for="Heating"></span>
+					</div>
+					<div class="form-group">
+						<label for="BathNumber">Banyo Sayısı</label>
+						<input asp-for="BathNumber" type="number" class="form-control" id="BathNumber" placeholder="Banyo Sayısı">
+						<span class="text-danger" asp-validation-for="BathNumber"></span>
+					</div>
+					<div class="form-group">
+						<label for="Balcony">Balkon</label>
+						<select asp-for="Balcony" class="form-control" id="Balcony">
+							<option value="False">Yok</option>
+							<option value="True">Var</option>
+						</select>
+						<span class="text-danger" asp-validation-for="Balcony"></span>
+					</div>
+					<div class="form-group">
+						<label for="Lift">Asansör</label>
+						<select asp-for="Lift" class="form-control" id="Lift">
+							<option value="False">Yok</option>
+							<option value="True">Var</option>
+						</select>
+						<span class="text-danger" asp-validation-for="Lift"></span>
+					</div>
+					<div class="form-group">
+						<label for="CarPark">Otopark</label>
+						<select asp-for="CarPark" class="form-control" id="CarPark">
+							<option value="0">Yok</option>
+							<option value="1">Açık Otopark</option>
+							<option value="2">Kapalı Otopark</option>
+							<option value="3">Açık ve Kapalı Otopark</option>
+						</select>
+						<span class="text-danger" asp-validation-for="CarPark"></span>
+					</div>
+					<div class="form-group">
+						<label for="category">Kategori</label>
+						<select asp-for="CategoryID" class="form-control" id="category">
+							<option value="1">Satılık</option>
+							<option value="2">Kiralık</option>
+						</select>
+						<span class="text-danger" asp-validation-for="CategoryID"></span>
+					</div>
+					<div class="form-group">
+						<label for="HomePage">Popüler Gayrimenkul</label>
+						<select asp-for="HomePage" class="form-control" id="HomePage">
+							<option value="False">Hayır</option>
+							<option value="True">Evet</option>
+						</select>
+						<span class="text-danger" asp-validation-for="HomePage"></span>
+					</div>
+					<div class="form-group">
+						<label for="Status">Durum</label>
+						<select asp-for="Status" class="form-control" id="Status">
+							<option value="False">Pasif</option>
+							<option value="True">Aktif</option>
+						</select>
+						<span class="text-danger" asp-validation-for="Status"></span>
+					</div>
+				</div>
+				<div class="card-action">
+					<button type="submit" class="btn btn-success">Kaydet</button>
+					<a asp-area="Admin" asp-controller="Estate" asp-action="Index" class="btn btn-danger">Vazgeç</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script src="/js/site.js"></script>

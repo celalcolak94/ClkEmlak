@@ -1,0 +1,66 @@
+﻿@model List<ResultCategoryDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+
+<h4 class="page-title">Kategoriler</h4>
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between pr-5">
+                <div class="card-title">Kategori Listesi</div>
+                <a asp-area="Admin" asp-controller="Category" asp-action="CreateCategory" class="btn btn-primary text-white">Yeni Kategori</a>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Kategori Adı</th>
+                            <th scope="col">Kategori Durumu</th>
+                            <th scope="col">Güncelle</th>
+                            <th scope="col">Sil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            <tr>
+                                <th>@count</th>
+                                <td>@item.Name</td>
+                                <td>
+                                    @if (item.Status)
+                                    {
+                                        <a asp-area="Admin" asp-controller="Category" asp-action="ChangeStatus" asp-route-id="@item.CategoryID">
+                                            <div class="badge badge-success px-4 py-3">Aktif</div>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-area="Admin" asp-controller="Category" asp-action="ChangeStatus" asp-route-id="@item.CategoryID">
+                                            <div class="badge badge-danger px-4 py-3">Pasif</div>
+                                        </a>
+                                    }
+                                </td>
+                                <td>
+                                    <a asp-area="Admin" asp-controller="Category" asp-action="UpdateCategory" asp-route-id="@item.CategoryID" class="btn btn-outline-warning">
+                                        Güncelle
+                                    </a>
+                                </td>
+                                <td>
+                                    <a asp-area="Admin" asp-controller="Category" asp-action="RemoveCategory" asp-route-id="@item.CategoryID" class="btn btn-outline-danger">
+                                        Sil
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+﻿@model ResultMessageDto
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_PageLayout.cshtml";
+}
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            @await Component.InvokeAsync("_ContactPartialComponent")
+
+            <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+                @if (ViewBag.Message != null)
+                {
+                    <div class="alert alert-success">
+                        @ViewBag.Message
+                    </div>
+                }
+                <form method="post" asp-controller="Contact" asp-action="Index">
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <input asp-for="Name" type="text"
+                                   class="form-control"
+                                   placeholder="Adınız Soyadınız" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <input asp-for="Email" type="email"
+                                   class="form-control"
+                                   placeholder="Email Adresiniz" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <input asp-for="Subject" type="text"
+                                   class="form-control"
+                                   placeholder="Konu" />
+                            <span asp-validation-for="Subject" class="text-danger"></span>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <textarea asp-for="MessageDetail"
+                                      cols="30"
+                                      rows="7"
+                                      class="form-control"
+                                      placeholder="Mesaj"></textarea>
+                            <span asp-validation-for="MessageDetail" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-12">
+                            <input type="submit"
+                                   value="Mesaj Gönder"
+                                   class="btn btn-primary mb-3"
+                                   style="background-color:#78c724;"
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

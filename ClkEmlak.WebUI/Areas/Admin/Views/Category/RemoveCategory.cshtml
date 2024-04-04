@@ -1,0 +1,26 @@
+﻿@model ResultCategoryDto
+@{
+    ViewData["Title"] = "RemoveCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h4 class="page-title">Kategoriler</h4>
+<div class="row">
+	<div class="col-md-8">
+		<div class="card">
+			<div class="card-header">
+				<div class="card-title">Kategori Silme İşlemi</div>
+			</div>
+			<form method="post" asp-area="Admin" asp-controller="Category" asp-action="RemoveCategory">
+				<div class="card-body">
+					<input type="hidden" asp-for="CategoryID" />
+					<strong>@Model.Name</strong> isimli kategoriyi silmek istediğinize emin misiniz?
+				</div>
+				<div class="card-action">
+					<button type="submit" class="btn btn-danger">Sil</button>
+					<a asp-area="Admin" asp-controller="Category" asp-action="Index" class="btn btn-warning">Vazgeç</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

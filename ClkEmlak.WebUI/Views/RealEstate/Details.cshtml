@@ -1,0 +1,211 @@
+﻿@model ResultEstateDto
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_PageLayout.cshtml";
+}
+
+<div class="section">
+    <div class="container">
+        <div>
+            <h1>@Model.Title</h1>
+            <hr />
+        </div>
+        <div class="row justify-content-between">
+            <div class="col-lg-6">
+                <div class="mb-2 d-flex justify-content-center" style="height:630px;">
+                    <img style="width:100%;" id="mainImg" src="@Model.CoverPhoto" alt="Ana Fotoğraf">
+                </div>
+                <div class="thumbnail-images row">
+                    @foreach (var item in Model.ImageUrls)
+                    {
+                        <div class="col-lg-2 col-3 mb-2">
+                            <img class="img-fluid" style="cursor:pointer; height:100px; padding:3px;" src="@item" alt="Küçük Fotoğraf 1" onclick="changeMainImage('@item', this)">
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <h3 class="heading text-primary mb-4 mt-2 fw-bold">@Model.Price.ToString("N0") ₺</h3>
+                <p class="meta">@Model.Province / @Model.District / @Model.Address</p>
+                <ul class="p-0">
+                    <li class="row border-bottom mt-2">
+                        <div class="col-6">
+                            <h5 class="fs-5">İlan Tarihi</h5>
+                        </div>
+                        <div class="col-6">
+                            <span class="text-black fs-6">@Model.Date.ToShortDateString()</span>
+                        </div>
+                    </li>
+                    <li class="row border-bottom mt-2">
+                        <div class="col-6">
+                            <h5 class="fs-5">Emlak Tipi</h5>
+                        </div>
+                        <div class="col-6">
+                            <span class="text-black fs-6">Satılık Daire</span>
+                        </div>
+                    </li>
+                    <li class="row border-bottom mt-2">
+                        <div class="col-6">
+                            <h5 class="fs-5">m² (Brüt)</h5>
+                        </div>
+                        <div class="col-6">
+                            <span class="text-black fs-6">@Model.GrossSquareMeters</span>
+                        </div>
+                    </li>
+                    <li class="row border-bottom mt-2">
+                        <div class="col-6">
+                            <h5 class="fs-5">m² (Net)</h5>
+                        </div>
+                        <div class="col-6">
+                            <span class="text-black fs-6">@Model.NetSquareMeters</span>
+                        </div>
+                    </li>
+                    <li class="row border-bottom mt-2">
+                        <div class="col-6">
+                            <h5 class="fs-5">Oda Sayısı</h5>
+                        </div>
+                        <div class="col-6">
+                            <span class="text-black fs-6">3+1</span>
+                        </div>
+                    </li>
+                    <li class="row border-bottom mt-2">
+                        <div class="col-6">
+                            <h5 class="fs-5">Bina Yaşı</h5>
+                        </div>
+                        <div class="col-6">
+                            <span class="text-black fs-6">@Model.BuildingAge</span>
+                        </div>
+                    </li>
+                    <li class="row border-bottom mt-2">
+                        <div class="col-6">
+                            <h5 class="fs-5">Kat Sayısı</h5>
+                        </div>
+                        <div class="col-6">
+                            <span class="text-black fs-6">@Model.NumberOfFloors</span>
+                        </div>
+                    </li>
+                    <li class="row border-bottom mt-2">
+                        <div class="col-6">
+                            <h5 class="fs-5">Bulunduğu Kat</h5>
+                        </div>
+                        <div class="col-6">
+                            <span class="text-black fs-6">@Model.FloorLocation</span>
+                        </div>
+                    </li>
+                    <li class="row border-bottom mt-2">
+                        <div class="col-6">
+                            <h5 class="fs-5">Isıtma</h5>
+                        </div>
+                        <div class="col-6">
+                            <span class="text-black fs-6">@Model.Heating</span>
+                        </div>
+                    </li>
+                    <li class="row border-bottom mt-2">
+                        <div class="col-6">
+                            <h5 class="fs-5">Banyo Sayısı</h5>
+                        </div>
+                        <div class="col-6">
+                            <span class="text-black fs-6">@Model.BathNumber</span>
+                        </div>
+                    </li>
+                    <li class="row border-bottom mt-2">
+                        <div class="col-6">
+                            <h5 class="fs-5">Balkon</h5>
+                        </div>
+                        <div class="col-6">
+                            @if (Model.Balcony)
+                            {
+                                <span class="text-black fs-6">Var</span>
+                            }
+                            else
+                            {
+                                <span class="text-black fs-6">Yok</span>
+                            }
+                        </div>
+                    </li>
+                    <li class="row border-bottom mt-2">
+                        <div class="col-6">
+                            <h5 class="fs-5">Asansör</h5>
+                        </div>
+                        <div class="col-6">
+                            @if (Model.Lift)
+                            {
+                                <span class="text-black fs-6">Var</span>
+                            }
+                            else
+                            {
+                                <span class="text-black fs-6">Yok</span>
+                            }
+                        </div>
+                    </li>
+                    <li class="row border-bottom mt-2">
+                        <div class="col-6">
+                            <h5 class="fs-5">Otopark</h5>
+                        </div>
+                        <div class="col-6">
+                            @if (Model.CarPark == "None")
+                            {
+                                <span class="text-black fs-6">Yok</span>
+                            }
+                            else if (Model.CarPark == "OpenCarPark")
+                            {
+                                <span class="text-black fs-6">Açık Otopark</span>
+                            }
+                            else if (Model.CarPark == "CloseCarPark")
+                            {
+                                <span class="text-black fs-6">Kapalı Otopark</span>
+                            }
+                            else if (Model.CarPark == "OpenAndCloseCarPark")
+                            {
+                                <span class="text-black fs-6">Açık ve Kapalı Otopark</span>
+                            }
+                        </div>
+                    </li>
+                </ul>
+                <div class="border p-4">
+                    <div class="mb-2">
+                        <h3>Çolakoğlu Gayrimenkul</h3>
+                        <a asp-controller="RealEstate" asp-action="Index">Tüm İlanlar</a>
+                    </div>
+                    <div>
+                        <dl>
+                            <div class="d-flex justify-content-between bg-light p-3">
+                                <dd class="fs-5 text-black">Cep</dd>
+                                <dt class="fs-5">0 (536) 411 12 28</dt>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <div class="bd-example">
+                    <nav>
+                        <div class="nav nav-tabs mb-3 fs-5 fw-bold" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="nav-description-tab" data-bs-toggle="tab" data-bs-target="#nav-description" type="button" role="tab" aria-controls="nav-description" aria-selected="true">İlan Detayları</button>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade active show" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab">
+                            <p class="fs-5 text-black">@Model.Description</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var previouslyClickedElement = null;
+    function changeMainImage(imageSrc, clickedElement) {
+        var mainImg = document.getElementById('mainImg');
+        mainImg.src = imageSrc;
+        if (previouslyClickedElement !== null) {
+            previouslyClickedElement.style.border = "none";
+        }
+        clickedElement.style.border = "2px solid black";
+        previouslyClickedElement = clickedElement;
+    }
+</script>

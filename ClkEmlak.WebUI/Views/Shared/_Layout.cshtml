@@ -1,0 +1,15 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+@await Component.InvokeAsync("_UILayoutHeaderPartialComponent")
+<body>
+    @await Component.InvokeAsync("_UILayoutNavbarPartialComponent")
+    @RenderBody()
+    @await Component.InvokeAsync("_UILayoutFooterPartialComponent")
+    @await Component.InvokeAsync("_UILayoutScriptPartialComponent")
+    <div style="position:fixed; bottom:20px; right:20px; z-index:100; width:100px;">
+        <a href="https://wa.me/+90555XXXXXXX" target="_blank">
+            <img src="/images/WhatsApp_icon.png.webp" class="img-fluid" alt="WhatsApp">
+        </a>
+    </div>
+</body>
+</html>

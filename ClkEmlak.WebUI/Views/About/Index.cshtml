@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_PageLayout.cshtml";
+}
+
+<div class="section">
+    <div class="container">
+        <div class="row text-left mb-5">
+            <div class="col-12">
+                <h2 class="font-weight-bold heading text-primary mb-4">Hakkımızda</h2>
+            </div>
+            <div class="col-lg-6">
+                <p class="text-black-50">
+                    Çolakoğlu Emlak, müşterilerimize en iyi hizmeti sunmak için tutku ve profesyonellikle çalışan bir emlak şirketidir. 10 yılı aşkın süredir sektörde faaliyet gösteren firmamız, müşteri odaklı yaklaşımıyla ve uzman ekibiyle tanınmaktadır.
+                </p>
+                <p class="text-black-50">
+                    Vizyonumuz, müşterilerimize en iyi gayrimenkul deneyimini sunmak ve onların ihtiyaçlarını en üst düzeyde karşılamaktır. İster satılık, ister kiralık olsun, her müşterimizin benzersiz ihtiyaçlarına odaklanıyor ve onlara en uygun gayrimenkul seçeneklerini sunmak için çaba harcıyoruz.
+                </p>
+                <p class="text-black-50">
+                    Çolakoğku Emlak olarak, dürüstlük, şeffaflık ve güvenilirlik ilkelerine sıkı sıkıya bağlıyız. Müşterilerimizin güvenini kazanmak ve uzun vadeli ilişkiler kurmak için her zaman en yüksek standartlarda hizmet sunmaya özen gösteriyoruz.
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <p class="text-black-50">
+                    Şirketimizin başarısının arkasındaki temel unsurlardan biri, deneyimli ve uzman kadromuzdur. Her biri sektörde geniş bilgi ve tecrübeye sahip olan emlak danışmanlarımız, müşterilerimize en iyi hizmeti sunmak için sürekli olarak kendilerini geliştirmektedirler. Profesyonellikleri, samimiyetleri ve müşteri memnuniyetine verdiğimiz önem, şirketimizin marka değerini oluşturan temel unsurlardır.
+                </p>
+                <p class="text-black-50">
+                    Çolakoğlu Emlak olarak, sosyal sorumluluk bilinciyle hareket ediyor ve topluma katkı sağlamak için çeşitli sosyal projelerde yer alıyoruz. Sürdürülebilirlik ve toplumsal fayda odaklı çalışma prensiplerimiz, işimizin her alanında bizi yönlendirmektedir.
+                </p>
+                <p>
+                    Bizler, Çolakoğlu Emlak olarak, müşteri memnuniyetini her zaman en üst düzeyde tutmayı, dürüstlük ve şeffaflık ilkesinden ödün vermemeyi ve sektörde lider bir konuma gelmek için sürekli olarak kendimizi geliştirmeyi taahhüt ediyoruz. Siz de Çolakoğlu Emlak ailesine katılarak, gayrimenkul ihtiyaçlarınızı güvenle bizimle paylaşabilirsiniz.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Component.InvokeAsync("_HomeSectionPartialComponent")
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+                <img src="/EstateThema/images/img_1.jpg" alt="Image" class="img-fluid" />
+            </div>
+            <div class="col-md-4 mt-lg-5" data-aos="fade-up" data-aos-delay="100">
+                <img src="/EstateThema/images/img_3.jpg" alt="Image" class="img-fluid" />
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <img src="/EstateThema/images/img_2.jpg" alt="Image" class="img-fluid" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Component.InvokeAsync("_HomeTestimonialsPartialComponent")

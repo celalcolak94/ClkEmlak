@@ -1,0 +1,122 @@
+﻿@model List<ResultEstateDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<h4 class="page-title">Gayrimenkuller</h4>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between pr-5">
+                <div class="card-title">Gayrimenkul Listesi</div>
+                <a asp-area="Admin" asp-controller="Estate" asp-action="CreateEstate" class="btn btn-primary text-white">Yeni Gayrimenkul</a>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Fotoğraf</th>
+                            <th scope="col">Başlık</th>
+                            <th scope="col">Fiyat</th>
+                            <th scope="col">Adres</th>
+                            <th scope="col">m²(Brüt)</th>
+                            <th scope="col">m²(Net)</th>
+                            <th scope="col">Oda</th>
+                            <th scope="col">Bina Yaşı</th>
+                            <th scope="col">Kat Sayısı</th>
+                            <th scope="col">Kat</th>
+                            <th scope="col">Isıtma</th>
+                            <th scope="col">Banyo</th>
+                            <th scope="col">Balkon</th>
+                            <th scope="col">Asansör</th>
+                            <th scope="col">Otopark</th>
+                            <th scope="col">Güncelle</th>
+                            <th scope="col">Sil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            <tr>
+                                <th>@count</th>
+                                <td style = "height:50px; width:50px"><img src="@item.CoverPhoto" style="width:100%;height:50px;" /></td>
+                                <td>@item.Title</td>
+                                <td>₺@item.Price.ToString("N0")</td>
+                                <td>@item.Address</td>
+                                <td>@item.GrossSquareMeters</td>
+                                <td>@item.NetSquareMeters</td>
+                                <td>@item.Rooms</td>
+                                <td>@item.BuildingAge</td>
+                                <td>@item.NumberOfFloors</td>
+                                <td>@item.FloorLocation</td>
+                                <td>@item.Heating</td>
+                                <td>@item.BathNumber</td>
+                                @if (item.Balcony)
+                                {
+                                    <td>Var</td>
+                                }else
+                                {
+                                    <td>Yok</td>
+                                }
+
+                                @if (item.Lift)
+                                {
+                                    <td>Var</td>
+                                }
+                                else
+                                {
+                                    <td>Yok</td>
+                                }
+
+                                @if (item.CarPark == "None")
+                                {
+                                    <td>Yok</td>
+                                }
+                                else if (item.CarPark == "OpenCarPark")
+                                {
+                                    <td>Açık Otopark</td>
+                                }
+                                else if (item.CarPark == "CloseCarPark")
+                                {
+                                    <td>Kapalı Otopark</td>
+                                }
+                                else if (item.CarPark == "OpenAndCloseCarPark")
+                                {
+                                    <td>Açık ve Kapalı Otopark</td>
+                                }
+                                @* <td>
+                                    @if (item.Status)
+                                    {
+                                        <a asp-area="Admin" asp-controller="Category" asp-action="ChangeStatus" asp-route-id="@item.CategoryID">
+                                            <div class="badge badge-success px-4 py-3">Aktif</div>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-area="Admin" asp-controller="Category" asp-action="ChangeStatus" asp-route-id="@item.CategoryID">
+                                            <div class="badge badge-danger px-4 py-3">Pasif</div>
+                                        </a>
+                                    }
+                                </td> *@
+                                <td>
+                                    <a asp-area="Admin" asp-controller="Estate" asp-action="UpdateEstate" asp-route-id="@item.EstateID" class="btn btn-outline-warning">
+                                        Güncelle
+                                    </a>
+                                </td>
+                                <td>
+                                    <a asp-area="Admin" asp-controller="Estate" asp-action="RemoveEstate" asp-route-id="@item.EstateID" class="btn btn-outline-danger">
+                                        Sil
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

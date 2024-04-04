@@ -1,0 +1,26 @@
+﻿@model ResultEstateDto
+@{
+    ViewData["Title"] = "RemoveEstate";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h4 class="page-title">Gayrimenkuller</h4>
+<div class="row">
+	<div class="col-md-8">
+		<div class="card">
+			<div class="card-header">
+				<div class="card-title">Gayrimenkul Silme İşlemi</div>
+			</div>
+			<form method="post" asp-area="Admin" asp-controller="Estate" asp-action="RemoveEstate">
+				<div class="card-body">
+					<input type="hidden" asp-for="EstateID" />
+					<strong>@Model.Title</strong> isimli gayrimenkulu silmek istediğinize emin misiniz?
+				</div>
+				<div class="card-action">
+					<button type="submit" class="btn btn-danger">Sil</button>
+					<a asp-area="Admin" asp-controller="Estate" asp-action="Index" class="btn btn-warning">Vazgeç</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

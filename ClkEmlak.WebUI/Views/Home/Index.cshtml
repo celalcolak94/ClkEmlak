@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@await Component.InvokeAsync("_HomePopularEstatePartialComponent")
+@await Component.InvokeAsync("_HomeServicePartialComponent")
+@await Component.InvokeAsync("_HomeSectionPartialComponent")
+@await Component.InvokeAsync("_HomeTestimonialsPartialComponent")
+@await Component.InvokeAsync("_HomeAgentsPartialComponent")
